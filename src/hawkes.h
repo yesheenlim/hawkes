@@ -2,6 +2,8 @@
 #ifndef HAWKES_H
 #define HAWKES_H
 
+#include <boost/shared_ptr.hpp>
+
 // the Hawkes process and all related
 namespace Hawkes {
 
@@ -12,8 +14,8 @@ namespace Hawkes {
 
   public:
     Data();
-    ~Data();
-  }
+    ~Data() {};
+  };
 
   // the model itself
   class Model
@@ -23,7 +25,7 @@ namespace Hawkes {
 
   public:
     Model(int dim);
-    ~Model();
+    ~Model() {};
 
     // modifying operations
 
@@ -31,34 +33,13 @@ namespace Hawkes {
 
   };
 
+  typedef boost::shared_ptr<Model> model_ptr;
+
   // Hawkes kernel and mu estimation
-  class Estimate
-  {
-  private:
-    Model* model;
-
-  public:
-    Estimate(Model* model);
-    ~Estimate();
-
-    // non-modifying operations
-
-  };
-
+  void Estimate(model_ptr model);
+  
   // to simulate the process
-  class Simulate
-  {
-  private:
-    // class variables
-    Model* model;
-
-  public:
-    Simulate(Model* model);
-    ~Simulate();
-
-    // non-modifying operations
-
-  };
+  void Simulate(model_ptr model);
 
 }
 

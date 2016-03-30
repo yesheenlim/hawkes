@@ -1,11 +1,12 @@
 
 #include "hawkes.h"
 #include <iostream>
-#include <vector>
 #include <boost/shared_ptr.hpp>
 
 // member function definitions
 namespace Hawkes{
+
+  typedef boost::shared_ptr<Model> model_ptr;
 
   // class constructor for Model
   Model::Model(int dim)
@@ -16,18 +17,16 @@ namespace Hawkes{
     ///// need to write error validation functions
   }
 
-  // class constructor for Estimate
-  Estimate::Estimate(Model* model)
-    :model(model)
+  // function to estimate model parameters
+  void Estimate(model_ptr model)
   {
-    std::cout << "Estimating Hawkes model" << std::endl;
+    std::cout << "Estimating..." << std::endl;
   }
 
-  // class constructor for Model
-  Simulate::Simulate(Model* model)
-    :model(model)
+  // function for simulating the process
+  void Simulate(model_ptr model)
   {
-    std::cout << "Initialised simulate class" << std::endl;
+    std::cout << "Simulating..." << std::endl;
   }
 
 }
