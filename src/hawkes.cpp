@@ -1,32 +1,40 @@
 
 #include "hawkes.h"
 #include <iostream>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 // member function definitions
 namespace Hawkes{
 
-  typedef boost::shared_ptr<Model> model_ptr;
+  typedef std::unique_ptr<Model> model_ptr;
+
+  // class constructor for Data
+  Data::Data()
+  {
+    
+  }
 
   // class constructor for Model
-  Model::Model(int dim)
-    : dim(dim)
+  Model::Model(size_t dim)
+    : _dim(dim)
   {
-    std::cout << "Initialising Hawkes model of dimension " << dim << std::endl;
+    std::cout << "Model constructor" << std::endl;
 
     ///// need to write error validation functions
   }
 
-  // function to estimate model parameters
-  void Estimate(model_ptr model)
+  // Estimate constructor
+  Estimate::Estimate(const model_ptr& model)
+    : _model(model)
   {
-    std::cout << "Estimating..." << std::endl;
+    std::cout << "Estimate constructor" << std::endl;
   }
 
-  // function for simulating the process
-  void Simulate(model_ptr model)
+  // Simulate constructor
+  Simulate::Simulate(const model_ptr& model)
+    : _model(model)
   {
-    std::cout << "Simulating..." << std::endl;
+    std::cout << "Simulate constructor" << std::endl;
   }
 
 }
